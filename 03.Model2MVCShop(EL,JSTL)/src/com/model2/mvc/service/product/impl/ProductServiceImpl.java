@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	public void updateProduct(Product product) throws Exception {
-		System.out.println("up MPI = "+product);
+		System.out.println("MPI  = "+product);
 		productDAO.updateProduct(product);
 	}
 	

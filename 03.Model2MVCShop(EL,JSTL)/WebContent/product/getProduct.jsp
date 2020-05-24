@@ -1,25 +1,22 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 
+<% Product vo=(Product)request.getAttribute("vo");
+	String menu = request.getParameter("menu");
+%> --%>
 
-<%-- <%
-	Product vo = (Product)request.getAttribute("vo");
-%>	
-
-<% if(request.getParameter("menu").equals("search")){ %>
- --%>
 <html>
 <head>
-<title>Insert title here</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
+<title>Insert title here</title>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
- <form name="detailForm" action="/getProduct.do?" method="post">
-<input type="hidden" name="menu" value="${param.menu}">
+<form name="detailForm" method="post">
+
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
 		<td width="15" height="37"><img src="/images/ct_ttl_img01.gif"	width="15" height="37"></td>
@@ -69,12 +66,10 @@
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			상품이미지 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			상품이미지 <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${product.fileName}</td>
-			<img src = "/images/uploadFiles/../../images/empty.GIF"/>
-		</td>
+		<td class="ct_write01">${product.FileName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -121,29 +116,35 @@
 		<td align="right">
 
 		<table border="0" cellspacing="0" cellpadding="0">
+		<%-- <%if(menu.equals("manage")){ %> --%>
+		<c:if test="${param.menu=='manage'}">
 			<tr>
 		
 				<td width="17" height="23">
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
-				
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-				
-	
-				<c:if test = "${param.menu == 'search'}">
-					<a href="/addPurchaseView.do?prod_no=10000">구매</a>
-				</c:if>
-			
-				<c:if test = "${param.menu == 'manage'}">
 					<a href="/listProduct.do?menu=manage">확인</a>
-				</c:if>
 				</td>
-				
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
 				</td>
-				<td width="30"></td>
+			</tr>
+			</c:if>
+		<%-- <%}else{ %> --%>
+			<c:if test="${param.menu=='search'}">
+			<tr>
 		
+				<td width="17" height="23">
+					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+				</td>
+				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
+					<a href="/addPurchaseView.do?prodNo=${product.prodNo}">구매</a>
+				</td>
+				<td width="14" height="23">
+					<img src="/images/ct_btnbg03.gif" width="14" height="23">
+				</td>
+				
 				<td width="17" height="23">
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
@@ -154,6 +155,8 @@
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
 				</td>
 			</tr>
+		<%-- <%}%> --%>
+		</c:if>
 		</table>
 
 		</td>

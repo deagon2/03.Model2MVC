@@ -21,12 +21,12 @@ public class AddProductAction extends Action {
 		product.setPrice(Integer.parseInt(request.getParameter("price")));
 		product.setFileName(request.getParameter("fileName"));
 		
-		System.out.println(product);
+		System.out.println("Product에 저장되어있는값 :: "+product);
 		
 		ProductService service = new ProductServiceImpl();
 		service.addProduct(product);
 		
-		request.setAttribute("product", product);
+		request.setAttribute("productVO", product);
 		
 		return "forward:/product/addProduct.jsp";
 	}
